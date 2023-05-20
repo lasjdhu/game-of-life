@@ -1,6 +1,6 @@
 # Game of Life
 
-## Final version: January 2022
+## Final version: January 2023
 
 ![png](img/screenshot.png)
 

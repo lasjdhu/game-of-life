@@ -1,6 +1,6 @@
 # Game of Life
 
-## January 2023
+## December 2022
 
 ![png](assets/screenshot.png)
 

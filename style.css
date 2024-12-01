@@ -1,102 +1,85 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Source+Code+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter&display=swap");
 
-* {
-  padding: 0;
-  margin: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  background-color: black;
-  color: white;
-  font-family: "Inter", sans-serif;
+:root {
+  --font-size-base: 1rem;
+  --font-size-large: 1.5rem;
+  --primary-color: white;
+  --secondary-color: black;
 }
 
-main {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+header, footer, main {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-h1 {
-  font-family: "Press Start 2P", serif;
 }
 
 header {
   margin-top: 15px;
-  display: flex;
   height: 100px;
-  font-size: 1.5rem;
+  font-size: var(--font-size-large);
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-header a {
-  position: absolute;
-  padding: 0.5%;
-  top: 0;
-  left: 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  color: #ffffff;
-  border-bottom: 1px solid #ffffff;
-  margin: 3rem;
-  text-align: center;
-}
-
-header a:hover {
-  color: #000000;
-  background-color: #ffffff;
+h1 {
+  font-family: "Press Start 2P", serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
 }
 
 footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 50px;
 }
 
+main {
+  flex-direction: column;
+  padding: 0 3%;
+}
+
 .game {
-  width: 50%;
   text-align: center;
+  width: 100%;
 }
 
 .gameCanvas {
-  display: flex;
-  border: 1px solid white;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
+  border: 1px solid var(--primary-color);
   padding: 10px;
-  width: 90%;
   max-width: 480px;
+  width: 90%;
+  margin: 1rem auto;
 }
 
 .gameButtons button {
-  font-size: 1.2rem;
-  background-color: #000000;
-  color: #ffffff;
-  border: 1px solid #ffffff;
+  font-size: calc(var(--font-size-base) * 1.2);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   width: 160px;
-  margin: 0.5em 0.5em;
+  margin: 0.5em 0.25em;
   padding: 0.5em 1em;
   cursor: pointer;
-  text-align: center;
 }
 
 .gameButtons button:hover {
-  background-color: white;
-  color: black;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .rules {
-  width: 50%;
-  padding: 0% 5%;
-  list-style-position: inside;
+  width: 100%;
+  padding: 0 5%;
 }
 
 .rules h2 {
   margin-bottom: 5%;
+  text-align: center;
 }
 
 .rules li {
@@ -105,45 +88,16 @@ footer {
 
 @media only screen and (min-width: 1100px) {
   main {
-    height: calc(100vh - (115px + 50px));
-  }
-}
-
-@media only screen and (max-width: 1100px) {
-  header {
-    font-size: 1rem;
-    text-align: center;
+    flex-direction: row;
+    height: calc(100vh - 165px);
   }
 
-  header a {
-    position: relative;
-    margin: 1rem 0;
-  }
-
-  header h1 {
-    font-size: 1.6rem;
-  }
-
-  main {
-    flex-direction: column;
-    margin: 0% 3%;
-  }
-
-  .game {
-    width: 100%;
-    margin-top: 10%;
-  }
-
-  .rules {
-    width: 100%;
-    margin-top: 10%;
-  }
-
-  .rules h2 {
-    text-align: center;
+  .game, .rules {
+    width: 50%;
   }
 
   .rules li {
-    margin-bottom: 5%;
+    margin-bottom: 2rem;
   }
 }
+

@@ -1,9 +1,9 @@
 const canvas = document.querySelector(".gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const cellSize = 15;
-const rows = ctx.canvas.width / cellSize;
-const cols = ctx.canvas.height / cellSize;
+let cellSize = 15;
+let rows = Math.floor(canvas.width / cellSize);
+let cols = Math.floor(canvas.height / cellSize);
 
 const game = new Game(rows, cols);
 
@@ -26,21 +26,43 @@ window.onload = () => {
   let running = false;
   let drawing = false;
 
-  const handleMouseDown = (event) => {
-    drawing = true;
-    handleMouseMove(event);
+  const isInsideBounds = (event) => {
+    const rect = canvas.getBoundingClientRect();
+    return (
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
+    );
   };
 
   const handleMouseUp = () => {
     drawing = false;
   };
 
+  const handleMouseDown = (event) => {
+    if (isInsideBounds(event)) {
+      drawing = true;
+      handleMouseMove(event);
+    } else {
+      drawing = false;
+    }
+  };
+
   const handleMouseMove = (event) => {
     if (!drawing) return;
+
     const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((event.clientX - rect.left) / cellSize);
-    const y = Math.floor((event.clientY - rect.top) / cellSize);
-    game.grid[x][y].alive = true;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    if (isInsideBounds(event)) {
+      const x = Math.floor((event.clientX - rect.left) * scaleX / cellSize);
+      const y = Math.floor((event.clientY - rect.top) * scaleY / cellSize);
+      game.grid[x][y].alive = true;
+    } else {
+      drawing = false;
+    }
   };
 
   const handleRandomize = () => {
@@ -81,9 +103,9 @@ window.onload = () => {
   document.querySelector(".clearButton").addEventListener("click", handleClear);
   document.querySelector(".stopButton").addEventListener("click", handleStop);
   document.querySelector(".startButton").addEventListener("click", handleStart);
-  canvas.addEventListener("mousedown", handleMouseDown);
-  canvas.addEventListener("mouseup", handleMouseUp);
-  canvas.addEventListener("mousemove", handleMouseMove);
+  document.addEventListener("mousedown", handleMouseDown);
+  document.addEventListener("mouseup", handleMouseUp);
+  document.addEventListener("mousemove", handleMouseMove);
 
   setInterval(gameLoop, 500);
   window.requestAnimationFrame(drawLoop);

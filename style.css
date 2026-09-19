@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter&display=swap");
+
+:root {
+  --font-size-base: 1rem;
+  --font-size-large: 1.5rem;
+  --primary-color: white;
+  --secondary-color: black;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-family: "Inter", Arial, sans-serif;
+}
+
+header, footer, main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  margin-top: 15px;
+  height: 100px;
+  font-size: var(--font-size-large);
+  flex-direction: column;
+}
+
+h1 {
+  font-family: "Press Start 2P", serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+}
+
+footer {
+  height: 50px;
+}
+
+main {
+  flex-direction: column;
+  padding: 0 3%;
+}
+
+.game {
+  text-align: center;
+  width: 100%;
+}
+
+.gameCanvas {
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  max-width: 480px;
+  width: 90%;
+  margin: 1rem auto;
+}
+
+.gameButtons button {
+  font-size: calc(var(--font-size-base) * 1.2);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  width: 160px;
+  margin: 0.5em 0.25em;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+.gameButtons button:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.rules {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 7%;
+  box-sizing: border-box;
+}
+
+.rules h2 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.rules ol {
+  width: 100%;
+  padding-left: 20px;
+}
+
+.rules li {
+  margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .gameCanvas {
+    width: 80%;
+  }
+
+  .gameButtons button {
+    width: 140px;
+  }
+
+  .rules {
+    padding: 0 5%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .gameCanvas {
+    width: 75%;
+  }
+
+  .gameButtons button {
+    width: 180px;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  main {
+    flex-direction: row;
+    height: calc(100vh - 165px);
+  }
+
+  .game, .rules {
+    width: 50%;
+  }
+
+  .gameCanvas {
+    max-width: 480px;
+    width: 90%;
+  }
+
+  .rules li {
+    margin-bottom: 2rem;
+  }
+}
+
